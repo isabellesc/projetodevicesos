@@ -22,7 +22,7 @@
 
 //apresentar artigos disponiveis
 	while ($mostrar = mysql_fetch_array($consulta)) {
-		echo "<table width='800px' border ='1' align='center'>";
+		echo "<table width='800px' border ='10' align='center'>";
 		echo "<tr>";
 		echo "<td align='center' width='100' height='100' valign='middle'><img src='pasta_imagens/".$mostrar['imagem_artigo']."'border='0' width='200'></td></br></br>";
 		echo "<td><align='center'>".$mostrar['nome_artigo']."</a></br> € ".$mostrar['preco_artigo']."</br>".$mostrar['descricao_artigo']."</td>";

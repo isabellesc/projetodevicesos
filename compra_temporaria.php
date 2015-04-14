@@ -4,7 +4,7 @@
 	session_start();
 
 //ligacao a bd
-	include("shopp.php");
+	include('shopp.php');
 
 //seleccionar quantidade temporaria
 	$sql_quantidade = 'SELECT quantidade FROM compra_temporaria WHERE sessao = "'.$sessao.'" AND id_artigo ="'.$id_artigo. '"';
@@ -15,7 +15,7 @@
 	if (mysql_num_rows($consulta2) > 0) { $quantidade = $resultado ['quantidade']; }
 
 //se nao houver quantidade
-	else { $quantidade = 0;}
+		else { $quantidade = 0;}
 
 
 

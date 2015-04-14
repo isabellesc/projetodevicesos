@@ -1,12 +1,15 @@
 <?php
+
 //iniciar sessão
-session_start();
+	session_start();
 
 //ligação db
-include('shopp.php');
+	include('shopp.php');
 ?>
 
-<table width="800" border="1" cellspacing="0" cellpadding="0" align="center">
+
+
+<table width="1020" height='500' border="10" cellspacing="0" cellpadding="0" align="center">
 	<tr><td width="200"></td>
 	<td width="600">
 
@@ -49,7 +52,7 @@ include('shopp.php');
 
 			while ($mostrar = mysql_fetch_array($consulta)){
 				echo "<th align='center' width='150' height='100' valign='middle'><a href='comprar.php?id_artigo=".$mostrar['id_artigo']."'>".$mostrar['nome_artigo']."</th>";
-				echo "<a href='comprar.php?id_artigo=".$mostrar['id_artigo']."'><img src='$pasta_imagens".$mostrar['imagem_artigo']."' border='0'>"; }
+				echo "<a href='comprar.php?id_artigo=".$mostrar['id_artigo']."'><img src='pasta_imagens/".$mostrar['imagem_artigo']."' border='0' width='160'>"; }
 
 			echo "</table>";
 		?>

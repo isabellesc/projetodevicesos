@@ -1,30 +1,32 @@
+<! NÃO FUNCIONAL -->
+
 <?php 
 //iniciar sessao
-session_start();
+	session_start();
 
 //ligacao a bd
-include('shopp.php');
+	include('shopp.php');
 
 //preparar sessao de compra
-$sessao = session_id();
+	$sessao = session_id();
 
 
 //o script verifica se o cliente esta autenticado
 //uma vez q so os clientes registados podem proceder a compra
-if(isset($_SESSION['id_cliente']) == FALSE ) {
+	if(isset($_SESSION['id_cliente']) == FALSE ) {
 
-	echo "<tr>Tem de se autenticar para poder continuar a compra! </tr>";
-	echo "<tr><a href='login.php'>Voltar à página inicial!</a></tr>"; }
+		echo "<tr>Tem de se autenticar para poder continuar a compra! </tr>";
+		echo "<tr><a href='login.php'>Voltar à página inicial!</a></tr>"; }
 
 
 //caso esteja autenticado exibe os dados pessoais
-else {
+		else {
 
-	$id_cliente = $_SESSION['id_cliente'];
-	$sql_cliente = 'SELECT * FROM clientes WHERE id_cliente='.$id_cliente;
-	$consulta = mysql_query($sql_cliente);
-	$mostrar = mysql_fetch_array($consulta);
-	extract ($mostrar);
+			$id_cliente = $_SESSION['id_cliente'];
+			$sql_cliente = 'SELECT * FROM clientes WHERE id_cliente='.$id_cliente;
+			$consulta = mysql_query($sql_cliente);
+			$mostrar = mysql_fetch_array($consulta);
+			extract ($mostrar);
 
 
 //apresenta tabela com os dados do utilizador
@@ -32,18 +34,18 @@ else {
 	echo  "<tr><td><strong>Passo 1 : Dados para o envio</strong></td></tr>";
 ?>
 
-<tr><td>
-<table>
-	<tr><td>Primeiro nome: <?php echo $primeiro_nome; ?></td></tr>
-	<tr><td>Ultimo nome: <?php echo $apelido; ?></td></tr>
-	<tr><td>Morada: <?php echo $endereco; ?></td></tr>
-	<tr><td>Codigo-Postal: <?php echo $codigo_postal; ?></td></tr>
-	<tr><td>Localidade: <?php echo $localidade; ?></td></tr>
-	<tr><td>Email: <?php echo $email; ?></td></tr>
-</table>
+		<tr><td>
+		<table>
+			<tr><td>Primeiro nome: <?php echo $primeiro_nome; ?></td></tr>
+			<tr><td>Ultimo nome: <?php echo $apelido; ?></td></tr>
+			<tr><td>Morada: <?php echo $endereco; ?></td></tr>
+			<tr><td>Codigo-Postal: <?php echo $codigo_postal; ?></td></tr>
+			<tr><td>Localidade: <?php echo $localidade; ?></td></tr>
+			<tr><td>Email: <?php echo $email; ?></td></tr>
+		</table>
 
 
-<?php
+<php
 //pesquisa artigos no carrinho
 	$sql_carrinho = 'SELECT * FROM compra_temporaria temp JOIN artigos prod ON temp.id_artigo = prod.id_artigo WHERE sessao = "' . $sessao , '" ORDER BY temp.id_artigo ASC';
 	$consulta = mysql_query($sql_carrinho);
@@ -51,19 +53,19 @@ else {
 
 
 //apresentar os artigos adicionados ao carrinho
-if ($resultado > 0) {
-	$total = 0;
+	if ($resultado > 0) {
+		$total = 0;
 
-	echo "<table width='800 px' border='1' align='center'>";
-	echo "<th>Imagem Artigo</th><th>Detalhes Artigos</th><td>Quantidade</td><td>Preço</td><td>Total a pagar</td>";
+		echo "<table width='800 px' border='1' align='center'>";
+		echo "<th>Imagem Artigo</th><th>Detalhes Artigos</th><td>Quantidade</td><td>Preço</td><td>Total a pagar</td>";
 
-	while ($mostrar = mysql_fetch_array($consulta)){
-		extract($mostrar);
+		while ($mostrar = mysql_fetch_array($consulta)){
+			extract($mostrar);
 
-		echo "<tr><td align ='center' width='100' height ='100' valign='middle'><img src='$pasta_imagens".$imagem_artigo."' border='0'></a>";
-		echo "<td align='center'>".$descricao_artigo."</td></a>";
-		echo "<td algign='center'>".$quantidade."</td>";
-		echo "<td align='center'>EUR ".$preco_artigo."</td>";
+			echo "<tr><td align ='center' width='100' height ='100' valign='middle'><img src='$pasta_imagens".$imagem_artigo."' border='0'></a>";
+			echo "<td align='center'>".$descricao_artigo."</td></a>";
+			echo "<td algign='center'>".$quantidade."</td>";
+			echo "<td align='center'>EUR ".$preco_artigo."</td>";
 
 
 //calcular subtotal
@@ -79,11 +81,11 @@ if ($resultado > 0) {
 ?>
 
 //vai permitir prosseguir a encomenda
-<form method="POST" action="finalizar_compra_2.php">
-	<tr><td colspan="2"><input type="submit" value="Concluir a comprar"/></td></tr>
-</form>
+	<form method="POST" action="finalizar_compra_2.php">
+		<tr><td colspan="2"><input type="submit" value="Concluir a comprar"/></td></tr>
+	</form>
 
-</table>
+	</table>
 
 <?php }
 ?>

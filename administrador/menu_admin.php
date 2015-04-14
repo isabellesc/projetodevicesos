@@ -1,36 +1,30 @@
 <?php
 //iniciar sessão
-session_start();
-//ligacao a bd
-include("shopp.php");
+	session_start();
 
-/* = menu_admin
-$username=$_POST['nome'];
-$password=$_POST['password'];
-$sql="SELECT id_cliente, nome_login, palavra_passe, palavra_passe='$password' ";
-$consulta = mysql_query($sql);
-$resultado = mysql_fetch_assoc($consulta);
-$_SESSION['id_cliente'] = $resultado['id_cliente'];
-$_SESSION['nome_login'] = $resultado['nome_login'];
-$_SESSION['nivel_utilizador'] = $resultado['nivel_utilizador'];
-if (mysql_num_rows($consulta) != 1) {
+//verificacao do utilizador se esta autenticado
+	if(isset($_SESSION['id_utilizador'])) {
 
-//voltar à pg de entrada se os dados são inválidos
-header("Location: index.php"); exit;
+		echo "<tr>Não autorizado a aceder a esta página </tr>";
 
-//redireciona conforme o nivel
-} elseif($_SESSION['nivel_utilizador'] ==1){
-
-header("Location: administrador/menu_admin.php"); exit;
-
-$_SESSION['id_cliente'] = $resultado['id_cliente'];
-header("Location: index.php"); exit;
-}
+		echo "<tr><a href='index.php'>Voltar à página inicial</a></tr>"; }
 
 
+//nivel utilizador
+			else {
 
-//var_dump($resultado);
-//die();
-*/
+			if(isset($_SESSION['nivel_utilizador'])) {
+				$nivel = $_SESSION ['nivel_utilizador'] ; }
 
+
+			<table width="800 px" border="1" align="center">
+				<td align="center">Menu de administrador</td><br />
+				<tr><td><a href='adicionar_categoria.php'>Adicionar categoria</a>
+				<p><a href='adicionar_artigo.php'>Ver encomendas</a>
+				<p><a href='estado_encomenda.php'>Ver encomendas</a>
+				<p><a href='loyout.php'>Terminar sessao</a>
+				</td></tr>
+				</td></tr>
+
+				<?php }
 ?>

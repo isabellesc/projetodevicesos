@@ -1,3 +1,5 @@
+<! NÃO FUNCIONAL -->
+
 <?php
 //iniciar sessão
 	session_start();
@@ -16,7 +18,7 @@ juntando lindas da tabela compra_temporaria com as linhas da tabela artigos */
 
 	$consulta = mysql_query($sql_carrinho);
 
-	$resultado = mysqli_num_rows($consulta);
+	$resultado = mysql_num_rows($consulta);
 
 
 		if ($resultado > 0){
@@ -29,7 +31,7 @@ juntando lindas da tabela compra_temporaria com as linhas da tabela artigos */
 
 			extract($mostrar);
 
-			echo "<tr><td align='center' width='100' height='100' valign='middle'><img src='pasta_imagens".$imagem_artigo."' border='0'></a>";
+			echo "<tr><td align='center' width='100' height='100' valign='middle'><img src='pasta_imagens/".$imagem_artigo."' border='0'></a>";
 			echo "<td align='center'><a href=\"comprar.php?id_artigo=$id_artigo&quantidade=$quantidade&submit=Alterar\">".$descricao_artigo."</td></a>";
 
 
@@ -46,11 +48,11 @@ juntando lindas da tabela compra_temporaria com as linhas da tabela artigos */
 
 //calcular sub-total
 	$sub_total = number_format($preco_artigo * $quantidade, 2);
-	echo "<td align='center'>EUR ".$sub_total."</td>";
+	echo "<td align='center'> € ".$sub_total."</td>";
 
 //calcular valor de compras
 	$total = $total + $preco_artigo * $quantidade; }
-	echo "<p align='center'>O valor total a pagar pelos artigos : <strong>EUR".number_format($total,2)."</strong></p> </td></tr>";
+	echo "<p align='center'>O valor total a pagar pelos artigos : <strong> € ".number_format($total,2)."</strong></p> </td></tr>";
 
 //botao concluir compra
 	echo '<form method ="POST" action="finalizar_compra.php">';

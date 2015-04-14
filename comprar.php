@@ -18,7 +18,7 @@
 	$mostrar = mysql_fetch_array($consulta1);
 
 //mostrar detalhes do artigo seleccionado
-	echo "<table width='800 px' border='1' align='center'>";
+	echo "<table width='800 px' border='10' align='center'>";
 	echo "<p align='center'><a href=\"lista_compras.php\">Ver lista de compras</a></p>";
 	echo "<p align='center'><a href=\"index.php\">Ver todos os artigos</a></p>";
 	echo "<strong><p align='center'>Artigos seleccionados:</strong></p><td align='center' width='100' height='100' valign='middle'><img src='pasta_imagens/" .$mostrar['imagem_artigo']."'border='0' width='380' </br>";
@@ -34,13 +34,15 @@
 	if (mysql_num_rows($consulta2) > 0) { $quantidade = $resultado ['quantidade']; }
 
 //se nao houver quantidade
-	else { $quantidade = 0;}
+		else { $quantidade = 0;}
 
 //iniciar formulario para atualizar valores de quantidade
 	echo '<form method="POST" action="atualizar_compra.php">';
 
 //apresentar quantidade a zero ou nr de vezes seleccionado
 	echo '<p>Quantidade: <input type="text" name="quantidade" id="quantidade" size="2" value="'.$quantidade.'"/>';
+	echo '<input type="hidden" value="'.$mostrar['id_artigo'].'" name="id_artigo">';
+
 
 //se a quantidade for positiva, permite alterar ou remover quantidade/artigo
 	if ($quantidade > 0){
